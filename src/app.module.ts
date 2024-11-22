@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 import { NotificacaoModule } from './notificacao/notificacao.module';
 
 @Module({
@@ -21,4 +22,12 @@ import { NotificacaoModule } from './notificacao/notificacao.module';
   controllers: [AppController],
   providers: [AppService],
 })
+
+@Module({
+  imports: [
+    EventEmitterModule.forRoot(),
+    NotificacaoModule,
+  ],
+})
+
 export class AppModule {}
